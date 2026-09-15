@@ -1,0 +1,13 @@
+{
+  "name": "Privy Policies",
+  "version": "1.0.0",
+  "description": "A browser extension to analyze data collection policies.",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

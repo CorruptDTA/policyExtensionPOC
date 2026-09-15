@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 280px;
+      padding: 14px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #222;
+      margin: 0;
+    }
+    h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 12px;
+    }
+    .legend {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+    .btn {
+      width: 100%;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 9px;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .btn:hover {
+      background-color: #1d4ed8;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #16a34a;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <h3>Privy Policies</h3>
+  <p>Scan the active page for key data collection terms:</p>
+
+  <div class="legend">
+    <div class="legend-item">
+      <span class="dot" style="background-color: #ef4444;"></span>
+      <span><strong>Red:</strong> Location &amp; Tracking</span>
+    </div>
+    <div class="legend-item">
+      <span class="dot" style="background-color: #f97316;"></span>
+      <span><strong>Orange:</strong> Identifiers &amp; Cookies</span>
+    </div>
+    <div class="legend-item">
+      <span class="dot" style="background-color: #3b82f6;"></span>
+      <span><strong>Blue:</strong> Health &amp; Diagnostics</span>
+    </div>
+  </div>
+
+  <button class="btn" id="scanBtn">Scan &amp; Highlight Policy</button>
+  <div id="status"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
