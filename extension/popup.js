@@ -3,31 +3,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const status = document.getElementById('status');
 
   scanBtn.addEventListener('click', async () => {
-    status.textContent = "Scanning...";
-
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
-    // Define categories and their respective highlight colors
-    const categoryConfig = [
-      {
-        name: "Location",
-        color: "#fecaca", // Light red
-        borderColor: "#ef4444",
-        terms: ["location", "gps", "precise location", "geolocation", "latitude"]
-      },
-      {
-        name: "Identifiers & Analytics",
-        color: "#fed7aa", // Light orange
-        borderColor: "#f97316",
-        terms: ["cookies", "identifiers", "device id", "advertising id", "browsing history", "third-party"]
-      },
-      {
-        name: "Health & Diagnostics",
-        color: "#bfdbfe", // Light blue
-        borderColor: "#3b82f6",
-        terms: ["health", "biometric", "sensor", "crash logs", "diagnostics"]
-      }
-    ];
+    status.textContent = "Fetching config from database...";
+      
+    try {
+      // Call your local Node.js API
+      const response = await fetch('http://localhost:3000/api/config');
+      const categoryConfig = await response.json();
+    
+      status.textContent = "Scanning...";
+    
+      // Proceed with the same injection logic as before
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: runHighlightScanner,
+        args: [categoryConfig]
+      }, (results) => {
+         // ... handle results ...
+      });
+    
+    } catch (error) {
+      status.textContent = "Error connecting to local database API.";
+    }
 
     // Execute the scanner on the page and receive results back
     chrome.scripting.executeScript({
